@@ -13,16 +13,19 @@ import java.awt.image.ImageObserver;
 public class Schnecke extends Objekt implements ImageObserver  {
 
     private final Image schnecke_links, schnecke_rechts, schnecke_vorne, schnecke_hinten, schnecke2_links, schnecke2_rechts, schnecke2_vorne, schnecke2_hinten;
-    private int blumenanzahl,speed,steps,direction;
+    private int blumenanzahl,steps;
     private final String name;
+    private Direction direction;
+    private Speed speed;
 
     public Schnecke(int x, int y, int groesse,String name)
     {
         super(x,y,groesse);
         blumenanzahl = 0;
-        speed = 1;
+        speed = Speed.NORMAL;
         steps = 0;
         this.name = name;
+        direction = Direction.LEFT;
 
         ImageIcon icon_schnecke_links = new ImageIcon("pips_left.png");
         schnecke_links = icon_schnecke_links.getImage();
@@ -52,33 +55,37 @@ public class Schnecke extends Objekt implements ImageObserver  {
     public void draw(Graphics g) {
         //ImageIcon icon_schnecke = new ImageIcon("pips_left.png");
         //schnecke = icon_schnecke.getImage();
+        /* direction :  0 = left; 1 = right; 2 = up; 3 = down */
 
         //Schnecke Pfeiltasten
-        if(direction == 0) {
+
+        if(direction == Direction.LEFT) {
             g.drawImage(schnecke_links, x * width, y * height, width, height, this);
         }
-        if(direction == 1) {
+        if(direction == Direction.RIGHT) {
             g.drawImage(schnecke_rechts, x * width, y * height, width, height, this);
         }
-        if(direction == 2) {
+        if(direction == Direction.UP) {
             g.drawImage(schnecke_hinten, x * width, y * height, width, height, this);
         }
-        if(direction == 3) {
+        if(direction == Direction.DOWN) {
             g.drawImage(schnecke_vorne, x * width, y * height, width, height, this);
         }
     }
     public void draw2(Graphics g) {
+
         //Schnecke WASD
-        if(direction == 0) {
+
+        if(direction == Direction.LEFT) {
             g.drawImage(schnecke2_links, x * width, y * height, width, height, this);
         }
-        if(direction == 1) {
+        if(direction == Direction.RIGHT) {
             g.drawImage(schnecke2_rechts, x * width, y * height, width, height, this);
         }
-        if(direction == 2) {
+        if(direction == Direction.UP) {
             g.drawImage(schnecke2_hinten, x * width, y * height, width, height, this);
         }
-        if(direction == 3) {
+        if(direction == Direction.DOWN) {
             g.drawImage(schnecke2_vorne, x * width, y * height, width, height, this);
         }
     }
@@ -87,8 +94,8 @@ public class Schnecke extends Objekt implements ImageObserver  {
         return blumenanzahl;
     }
     public int getSteps() { return steps; }
-    public int getSpeed() { return speed; }
-    public int getDirection() { return direction; }
+    public Speed getSpeed() { return speed; }
+    public Direction getDirection() { return direction; }
     public String getName() { return name; }
 
 
@@ -102,9 +109,9 @@ public class Schnecke extends Objekt implements ImageObserver  {
         steps=0;
     }
 
-    public void setSpeed(int speed) { this.speed = speed; }
+    public void setSpeed(Speed speed) { this.speed = speed; }
 
-    public void setDirection(int direction) { this.direction = direction; }
+    public void setDirection(Direction direction) { this.direction = direction; }
 
     @Override
     public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {

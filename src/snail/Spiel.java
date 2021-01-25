@@ -160,8 +160,6 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
             schneckenFeld.remove(0);
             schneckenFeld.remove(1);
         }
-
-
     }
 
     /**
@@ -182,8 +180,7 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
                 erdbeerenFeld.remove(i);
                 System.out.println("schneller Speed");
                 snail.resetSteps();
-                snail.setSpeed(2);
-                // t.setDelay(100);
+                snail.setSpeed(Speed.FAST);
 
             }
         }
@@ -197,8 +194,7 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
                 pilzeFeld.remove(i);
                 System.out.println("Langsamer Speed");
                 snail.resetSteps();
-                snail.setSpeed(0);
-                // t.setDelay(450);
+                snail.setSpeed(Speed.SLOW);
 
             }
         }
@@ -215,36 +211,33 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
         }
     }
 
-    private void canMove(int direction,int speed, int steps,Schnecke snail) {
+    private void canMove(Direction direction,Speed speed, int steps,Schnecke snail) {
 
         manageSteps(speed,steps,snail);
 
         if(hasNoWallCollision(direction,snail)) {
 
-
-
-
-            if ((speed == 1) && (steps % 2 == 0)) {        //normal
+            if ((speed == Speed.NORMAL) && (steps % 2 == 0)) {        //normal
                 moveSnail(direction, snail);
-            } else if (speed == 2) {                         //schnell
+            } else if (speed == Speed.FAST) {                         //schnell
                 moveSnail(direction, snail);
-            } else if ((speed == 0) && (steps % 3 == 0)) {   //langsam
+            } else if ((speed == Speed.SLOW) && (steps % 3 == 0)) {   //langsam
                 moveSnail(direction, snail);
             }
         }
 
     }
 
-    private void manageSteps(int speed, int steps,Schnecke snail) {
+    private void manageSteps(Speed speed, int steps,Schnecke snail) {
 
         /* speed : 0 = langsam; 1 = normal; 2 = schnell */
 
-        if ((speed == 0 && steps == 8) ||(speed == 2 && steps == 14) ) {
+        if ((speed == Speed.SLOW && steps == 8) ||(speed == Speed.FAST && steps == 14) ) {
             snail.resetSteps();
-            speed = 1;
+            speed = Speed.NORMAL;
             System.out.println("normaler Speed");
         }
-        if (speed == 1 && steps > 29) {
+        if (speed == Speed.NORMAL && steps > 29) {
             snail.resetSteps();
         }
             snail.erhoeheSteps();
@@ -254,21 +247,20 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
 //        moveSnail(schnecke2.getDirection(),schnecke2);
     }
 
-    private void moveSnail(int direction, Schnecke snail ) {
-
+    private void moveSnail(Direction direction, Schnecke snail ) {
 
 
         /* direction :  0 = left; 1 = right; 2 = up; 3 = down */
 
         switch(direction)
         {
-            case 0: //links
+            case LEFT: //links
                     snail.setx(snail.getx() -1);
-            case 1: //rechts
+            case RIGHT: //rechts
                     snail.setx(snail.getx() + 1);
-            case 2: //unten
+            case UP: //unten
                     snail.sety(snail.gety()-1);
-            case 3: //hoch
+            case DOWN: //hoch
                     snail.sety(snail.gety()+1);
 
         }
@@ -279,27 +271,27 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
     /* Checkt, ob Die Schnecke am Spielfeldrand steht
      * @author malte*/
 
-    private boolean hasNoWallCollision(int direction, Schnecke snail) {
+    private boolean hasNoWallCollision(Direction direction, Schnecke snail) {
 
         switch(direction) {
 
-            case 0 :
+            case LEFT :
                 if (snail.getx() == 0) {
                     return false;
                 }
                 
-            case 1 :
+            case RIGHT :
 
                 if (snail.getx() == 17) {
                     return false;
                 }
 
-            case 2 :
+            case UP :
                 if (snail.gety() == 0) {
                     return false;
                 }
 
-            case 3 :
+            case DOWN:
                 if (snail.gety() == 10) {
                     return false;
                 }

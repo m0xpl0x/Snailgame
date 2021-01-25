@@ -25,37 +25,37 @@ public class SnailListener extends KeyAdapter {
 
         if(key_id == KeyEvent.VK_LEFT )
         {
-            schnecke1.setDirection(0);
+            schnecke1.setDirection(Direction.LEFT);
         }
         if(key_id == KeyEvent.VK_RIGHT)
         {
-            schnecke1.setDirection(1);
+            schnecke1.setDirection(Direction.RIGHT);
         }
         if(key_id == KeyEvent.VK_UP)
         {
-            schnecke1.setDirection(2);
+            schnecke1.setDirection(Direction.UP);
         }
         if(key_id == KeyEvent.VK_DOWN)
         {
-            schnecke1.setDirection(3);
+            schnecke1.setDirection(Direction.DOWN);
         }
         if(key_id == KeyEvent.VK_A)
         {
-            schnecke2.setDirection(0);
+            schnecke2.setDirection(Direction.LEFT);
         }
         if(key_id == KeyEvent.VK_D)
         {
-            schnecke2.setDirection(1);
+            schnecke2.setDirection(Direction.RIGHT);
 
         }
         if(key_id ==  KeyEvent.VK_W)
         {
-            schnecke2.setDirection(2);
+            schnecke2.setDirection(Direction.UP);
 
         }
         if(key_id ==  KeyEvent.VK_S)
         {
-            schnecke2.setDirection(3);
+            schnecke2.setDirection(Direction.UP);
 
         }
     }

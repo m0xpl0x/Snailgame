@@ -1,4 +1,3 @@
-- Enums anstatt speed und dir als Integer
 
 - Bugs fixen, dass man vom rechten rand nicht mehr weg kommt
 
