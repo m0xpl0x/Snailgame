@@ -6,13 +6,15 @@ public class MovementHandler {
 
     private ArrayList<Schnecke> schneckenFeld;
 
-    public MovementHandler(ArrayList<Schnecke> schneckenFeld) {
-        this.schneckenFeld = schneckenFeld;
+    public MovementHandler() {
     }
 
-    public void canMove(Direction direction,Speed speed, int steps) {
+    public void canMove(ArrayList<Schnecke> schneckenFeld) {
 
         for (Schnecke snail : schneckenFeld) {
+            Speed speed = snail.getSpeed();
+            int steps = snail.getSteps();
+            Direction direction = snail.getDirection();
 
 
             manageSteps(speed, steps, snail);

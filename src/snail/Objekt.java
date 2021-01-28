@@ -3,11 +3,13 @@ package snail;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
+import java.util.ArrayList;
 
 public abstract class Objekt implements ImageObserver {
 
     protected int x,y,width,height;
     protected Image image;
+
 
     public Objekt(int x, int y, int groesse,String filename)
     {
@@ -45,6 +47,7 @@ public abstract class Objekt implements ImageObserver {
     public void sety(int y) {
         this.y = y;
     }
+
 
 
     @Override

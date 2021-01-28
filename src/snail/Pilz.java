@@ -5,4 +5,5 @@ public class Pilz extends Objekt  {
     {
         super(x,y,groesse,filename);
     }
+
 }
