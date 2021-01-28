@@ -31,6 +31,8 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
     private ArrayList<Pilz> pilzeFeld;
     private ArrayList<Erdbeere> erdbeerenFeld;
 
+    MovementHandler movementHandler;
+
 
     /* Startet das Spiel
      * @author malte*/
@@ -86,6 +88,7 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
 
         //for the keyevents
         addKeyListener(new SnailListener(schnecke1,schnecke2));
+        movementHandler = new MovementHandler(schneckenFeld);
 
         start();
 
@@ -153,8 +156,9 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
 
 
         /* Bewegt die Schnecke */
-        canMove(schnecke1.getDirection(),schnecke1.getSpeed(),schnecke1.getSteps(),schnecke1);
-        canMove(schnecke2.getDirection(),schnecke2.getSpeed(),schnecke2.getSteps(),schnecke2);
+
+        movementHandler.canMove(schnecke1.getDirection(),schnecke1.getSpeed(),schnecke1.getSteps());
+
 
         if(schneckenFeld.size() > 2) {
             schneckenFeld.remove(0);
@@ -210,7 +214,7 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
             }
         }
     }
-
+/*
     private void canMove(Direction direction,Speed speed, int steps,Schnecke snail) {
 
         manageSteps(speed,steps,snail);
@@ -230,7 +234,7 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
 
     private void manageSteps(Speed speed, int steps,Schnecke snail) {
 
-        /* speed : 0 = langsam; 1 = normal; 2 = schnell */
+        *//* speed : 0 = langsam; 1 = normal; 2 = schnell *//*
 
         if ((speed == Speed.SLOW && steps == 8) ||(speed == Speed.FAST && steps == 14) ) {
             snail.resetSteps();
@@ -250,7 +254,7 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
     private void moveSnail(Direction direction, Schnecke snail ) {
 
 
-        /* direction :  0 = left; 1 = right; 2 = up; 3 = down */
+        *//* direction :  0 = left; 1 = right; 2 = up; 3 = down *//*
 
         switch(direction)
         {
@@ -267,9 +271,9 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
 
     }
 
-    /* direction :  0 = left; 1 = right; 2 = up; 3 = down */
-    /* Checkt, ob Die Schnecke am Spielfeldrand steht
-     * @author malte*/
+    *//* direction :  0 = left; 1 = right; 2 = up; 3 = down *//*
+    *//* Checkt, ob Die Schnecke am Spielfeldrand steht
+     * @author malte*//*
 
     private boolean hasNoWallCollision(Direction direction, Schnecke snail) {
 
@@ -299,7 +303,7 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
 
         }
         return true;
-    }
+    }*/
 
     /** Erzeugt das Spielfeld mit Raster
      * Width = 18
@@ -336,5 +340,15 @@ public class Spiel extends JPanel implements Runnable, ActionListener {
         }
     }
 
+    public ArrayList<Erdbeere> getErdbeerenFeld() {
+        return erdbeerenFeld;
+    }
 
+    public ArrayList<Pilz> getPilzeFeld() {
+        return pilzeFeld;
+    }
+
+    public ArrayList<Blume> getBlumenFeld() {
+        return blumenFeld;
+    }
 }

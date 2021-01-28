@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
 
-public class Objekt implements ImageObserver {
+public abstract class Objekt implements ImageObserver {
 
     protected int x,y,width,height;
     protected Image image;
